@@ -1,8 +1,8 @@
-from django.http import JsonResponse
+from rest_framework import viewsets
+from miles.models import Depoimento
+from miles.serializer import DepoimentosSerializer
 
-
-def depoimentos(request): #TODO: request sabe de tudo.
-    """Depoimentos"""
-    if request.method == 'GET':
-        depoimento = {'id':1, 'nome': 'flauberth'}
-        return JsonResponse(depoimento)
+class DepoimentosViewSet(viewsets.ModelViewSet):
+    """Depoimentos de jornadas"""
+    queryset = Depoimento.objects.all()
+    serializer_class = DepoimentosSerializer
